@@ -105,7 +105,7 @@ void GLobj::paintShapes()
     glEnd(); 
     //Right Triangle strip
     glBegin(GL_TRIANGLE_STRIP);
-        glColor3f (6.0,  3.0, 1.5);  
+        glColor3f (2.0,  0.0, 0.5);  
         glVertex3f(0.5,  0.0, 0.0);
         glVertex3f(3.0,  1.5, 0.0);
         glVertex3f(3.0, -1.5, 0.0);
