@@ -28,7 +28,7 @@ void GLobj::initializeGL()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glLineWidth(4.0);
-    glPointSize(2.0);              // a dot is 4 by 4 pixels
+    glPointSize(2.0);
 }
 
 //Set up the viewport based on the screen dimentions
@@ -45,10 +45,8 @@ void GLobj::resizeGL( int w, int h )
     //setup the projection and switch to model view for transformations
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    //glOrtho(-1, 1, -1, 1, -1, 1);
     glOrtho(-5.0, 5.0, -5.0, 5.0, -5.0, 5.0);
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
 
     //implicit call to paintGL after resized
 }
@@ -58,14 +56,11 @@ void GLobj::ngon(int n)
 
 }
 
-//Paints the GL scene
-void GLobj::paintGL()
-{
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClear(GL_DEPTH_BUFFER_BIT);
-
+void GLobj::paintShapes()
+{   
+    glLoadIdentity();
     float radius = 0.5;
-    //Line of points at top
+
     glBegin(GL_POINTS);
         glColor3f ( 2.0, 0.5, 0.0);
         glVertex3f(-4.0, 4.0, 0.0);
@@ -135,6 +130,61 @@ void GLobj::paintGL()
         glVertex3f( 1.0, -2.5, radius);
     glEnd();
 
+   
+}
+
+
+//Paints the GL scene
+void GLobj::paintGL()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glLoadIdentity();
+
+    glRotatef(45, 0, 1, 1);
+    glTranslatef(1, -4.5, 0);
+
+    glBegin(GL_QUADS);
+        // Set The Color To Green
+        glColor3f(0.0f,1.0f,0.0f);         
+        glVertex3f( 1.0f, 1.0f,-1.0f);     
+        glVertex3f(-1.0f, 1.0f,-1.0f);     
+        glVertex3f(-1.0f, 1.0f, 1.0f);     
+        glVertex3f( 1.0f, 1.0f, 1.0f);     
+        // Set The Color To Orange
+        glColor3f(1.0f,0.5f,0.0f);         
+        glVertex3f( 1.0f,-1.0f, 1.0f);    
+        glVertex3f(-1.0f,-1.0f, 1.0f);    
+        glVertex3f(-1.0f,-1.0f,-1.0f);    
+        glVertex3f( 1.0f,-1.0f,-1.0f);    
+        // Set The Color To Red
+        glColor3f(1.0f,0.0f,0.0f);         
+        glVertex3f( 1.0f, 1.0f, 1.0f);   
+        glVertex3f(-1.0f, 1.0f, 1.0f);   
+        glVertex3f(-1.0f,-1.0f, 1.0f);   
+        glVertex3f( 1.0f,-1.0f, 1.0f);   
+        // Set The Color To Yellow
+        glColor3f (1.0f,1.0f,0.0f);        
+        glVertex3f( 1.0f,-1.0f,-1.0f);     
+        glVertex3f(-1.0f,-1.0f,-1.0f);     
+        glVertex3f(-1.0f, 1.0f,-1.0f);     
+        glVertex3f( 1.0f, 1.0f,-1.0f);     
+        // Set The Color To Blue
+        glColor3f(0.0f,0.0f,1.0f);         
+        glVertex3f(-1.0f, 1.0f, 1.0f);    
+        glVertex3f(-1.0f, 1.0f,-1.0f);    
+        glVertex3f(-1.0f,-1.0f,-1.0f);    
+        glVertex3f(-1.0f,-1.0f, 1.0f);    
+         // Set The Color To Violet
+        glColor3f(1.0f,0.0f,1.0f);        
+        glVertex3f( 1.0f, 1.0f,-1.0f);     
+        glVertex3f( 1.0f, 1.0f, 1.0f);     
+        glVertex3f( 1.0f,-1.0f, 1.0f);     
+        glVertex3f( 1.0f,-1.0f,-1.0f);     
+
+     glEnd();
+
+    paintShapes();
 
     glFlush ();
 }

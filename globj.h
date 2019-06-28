@@ -20,6 +20,7 @@ protected:
     void initializeGL();
     void resizeGL(int w, int h);
     void paintGL();
+    void paintShapes();
     void ngon(int n);
 };
 
